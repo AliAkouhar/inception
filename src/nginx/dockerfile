@@ -1,16 +1,16 @@
+
 FROM debian:12
 
 RUN apt-get update &&\
     apt-get install -y nginx openssl &&\
-    mkdir -p etc/nginix/ssl
+    mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 -nodes -days 365\
-    -keyout /etc/nginix/ssl/nginix.key\
-    -out /etc/nginix/ssl/nginix.crt\
+    -keyout /etc/nginx/ssl/nginx.key\
+    -out /etc/nginx/ssl/nginx.crt\
     -subj "/CN=MA/ST=BG/L=1337/O=42/OU=42/CN=aakouhar.42.fr/UID=aakouhar"
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-COPY /home/aakouhar/Desktop/websiteinception /var/www/html
 
 CMD ["nginx", "-g", "daemon off;"]
