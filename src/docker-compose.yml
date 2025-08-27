@@ -6,3 +6,12 @@ services:
     ports:
       - "443:443"
     restart: always
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    build: ./requirements/mariadb
+    ports:
+      - "3306:3306"
+    envfile:
+      - .env
+    restart: always
